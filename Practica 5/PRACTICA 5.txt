@@ -1,0 +1,13 @@
+PRACTICA 5:
+Construya un modelo Entidad Relación que permita llevar el control de Canje de sus 
+puntos acumulados por premios.
+a. El artículo debe tener código, nombre, tipo y subtipo.
+b. Se debe manejar la existencia de artículos por sucursal. Ejemplo, está la sucursal 
+Promerica Majadas y Promerica Columbus y en cada sucursal existen artículos 
+como DVD de Disney, lapiceros, mouse, etc. Y cada sucursal debe saber qué 
+cantidad posee en inventario.
+c. Van a existir varias promociones para canjear y estas van a estar compuestas por 
+varios artículos. Estas promociones poseen rangos de fecha de vigencia y en dichas 
+promociones estará el costo de los puntos y el precio del artículo
+d. El canje debe tener ID del artículo, Cantidad Canjeada, Precio del artículo, la 
+promoción y observaciones.

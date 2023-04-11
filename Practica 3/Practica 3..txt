@@ -1,0 +1,99 @@
+Practica 3. 
+
+A) Escriba la consulta en SQL que devuelva el nombre del proyecto y sus productos 
+correspondientes del proyecto Premia cuyo código es 1
+
+/*--------------------------------- INICIO -------------------------------------*/
+	RESPUESTA
+
+-- PROYECTO Y CODIGO DE PRODUCTO
+SELECT P.NOMBRE AS NOMBRE_PROYECTO, PR.PRODUCTO, PR.PROYECTO
+FROM PROYECTO P
+INNER JOIN PRODUCTO_PROYECTO PR ON P.PROYECTO = PR.PROYECTO
+WHERE P.PROYECTO = 1;
+
+-- PROYECTO Y NOMBRE DE PRODUCTO
+SELECT p.NOMBRE AS 'Nombre del Proyecto', prod.DESCRIPCION AS 'Nombre del Producto'
+FROM PROYECTO p
+INNER JOIN PRODUCTO_PROYECTO pp ON p.PROYECTO = pp.PROYECTO
+INNER JOIN PRODUCTO prod ON pp.PRODUCTO = prod.PRODUCTO
+WHERE p.PROYECTO = 1;
+
+/*---------------------------------- FIN -------------------------------------*/
+
+
+
+
+
+
+
+
+
+B) Escriba una consulta SQL que devuelva los distintos mensajes que hay, indicando a qué 
+proyecto y producto pertenecen.
+
+/*--------------------------------- INICIO -------------------------------------*/
+
+ 	RESPUESTA
+
+-- CODIGO MENSAJE POR PROYECTO
+SELECT m.COD_MENSAJE, p.NOMBRE AS 'Nombre del Proyecto', pr.DESCRIPCION AS 'Nombre del Producto'
+FROM MENSAJE m
+INNER JOIN FORMATO_MENSAJE fm ON m.COD_FORMATO = fm.COD_FORMATO
+INNER JOIN PRODUCTO_PROYECTO pp ON m.PROYECTO = pp.PROYECTO
+INNER JOIN PRODUCTO pr ON pp.PRODUCTO = pr.PRODUCTO
+INNER JOIN PROYECTO p ON pp.PROYECTO = p.PROYECTO;
+
+-- MENSAJE POR PROYECTO
+SELECT t.NOMBRE AS 'Nombre del Mensaje', p.NOMBRE AS 'Nombre del Proyecto', prod.DESCRIPCION AS 'Nombre del Producto'
+FROM MENSAJE m
+INNER JOIN FORMATO_MENSAJE f ON m.COD_FORMATO = f.COD_FORMATO
+INNER JOIN TIPO_INFORMACION t ON f.COD_TIPO_INFORMACION = t.COD_TIPO_INFORMACION
+INNER JOIN PRODUCTO_PROYECTO pp ON m.PROYECTO = pp.PROYECTO AND m.PRODUCTO = pp.PRODUCTO
+INNER JOIN PRODUCTO prod ON pp.PRODUCTO = prod.PRODUCTO
+INNER JOIN PROYECTO p ON pp.PROYECTO = p.PROYECTO;
+
+/*---------------------------------- FIN -------------------------------------*/
+
+
+
+
+
+
+
+
+C) Escriba una consulta SQL que devuelva los distintos mensajes que hay, indicando a qué 
+proyecto y producto pertenecen. Pero si el mensaje está en todos los productos de un 
+proyecto, en lugar de mostrar cada producto, debe mostrar el nombre del proyecto y un 
+solo producto que diga “TODOS”.
+
+/*--------------------------------- INICIO -------------------------------------*/
+
+
+SELECT t.NOMBRE AS 'Nombre del Mensaje', p.NOMBRE AS 'Nombre del Proyecto', 
+       CASE WHEN COUNT(DISTINCT pp.PRODUCTO) = 1 THEN MAX(prod.DESCRIPCION) ELSE 'TODOS' END AS 'Nombre del Producto', 
+       f.ASUNTO
+FROM MENSAJE m
+INNER JOIN FORMATO_MENSAJE f ON m.COD_FORMATO = f.COD_FORMATO
+INNER JOIN TIPO_INFORMACION t ON f.COD_TIPO_INFORMACION = t.COD_TIPO_INFORMACION
+INNER JOIN PRODUCTO_PROYECTO pp ON m.PROYECTO = pp.PROYECTO
+LEFT JOIN PRODUCTO prod ON pp.PRODUCTO = prod.PRODUCTO
+INNER JOIN PROYECTO p ON pp.PROYECTO = p.PROYECTO
+GROUP BY t.NOMBRE, p.NOMBRE, m.PROYECTO, f.ASUNTO
+HAVING COUNT(DISTINCT pp.PRODUCTO) = (SELECT COUNT(*) FROM PRODUCTO_PROYECTO WHERE PROYECTO = m.PROYECTO);
+
+/*---------------------------------- FIN -------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

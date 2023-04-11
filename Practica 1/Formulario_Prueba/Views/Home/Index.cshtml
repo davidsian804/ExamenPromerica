@@ -1,0 +1,71 @@
+﻿
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <h3>Caracteristicas de la Practica</h3>
+</div>
+<br />
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>Característica</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Tipos de Validaciones aplicadas al Formulario</td>
+            <td>
+                <ul>
+                    <li>
+                        [Required(ErrorMessage = "Campos requeridos + mensaje de error")]   
+                    </li>
+                    <li>
+                        [Display(Name = "Nombre de la propiedad:")]
+                    </li>
+                    <li>
+                        [StringLength(maximumLength: 50, ErrorMessage = "No puede ser mayor a {1} caracteres")]
+                        <br />
+                        Validacion sobre maximo o minimo de caracteres
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Conexion con una base de datos</td>
+            <td>Para hacer un poco mas dinamica la practica se implemento una conexion a una base de datos
+                (la conexion esta en el archivo appsettings.Development.json).
+            </td>
+        </tr>
+        <tr>
+            <td>Autenticación basada a nivel de Modelos</td>
+            <td>Se utilizo una validacion de campos a travez de modelos de datos para evitar validar
+                el formulario en el frontend.</td>
+        </tr>
+        <tr>
+            <td>Creacion de usuarios (Simple)</td>
+            <td>Como parte de continuar con la practica de forma dinamica
+                se implemento la caracteristica de poder registrar los nombres y contraseñas de un usuario ejemplo,
+                por ser un ejemplo sencillo (NO se encriptaron contraseñas).
+            </td>
+        </tr>
+        <tr>
+            <td>Servicios e Inyeccion de dependencias</td>
+            <td>
+               Se implementaron servicios para separar la logica de los controladores e 
+               inyecciones de dependencias.
+            </td>
+        </tr>
+        <tr>
+            <td>ORM</td>
+            <td>
+                Se uso Dapper y automapper para el manejo de querys.
+            </td>
+        </tr>
+    </tbody>
+</table>

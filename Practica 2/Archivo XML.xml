@@ -1,0 +1,9 @@
+
+<?xml version="1.0" encoding="UTF-8"?> <!-- Declaración XML con la versión y la codificación utilizada -->
+<credit-card-information> <!-- Elemento raíz que contiene toda la información de la tarjeta de crédito -->
+  <system-name>Sistema Banco Promerica</system-name> <!-- Nombre del sistema que envía la información de la tarjeta -->
+  <system-location>Ciudad de Guatemala , Zona 9</system-location> <!-- Ubicación del sistema que envía la información de la tarjeta -->
+  <card-number>Numero de tarjeta</card-number> <!-- Número de la tarjeta de crédito. Este es un dato sensible y debe ser protegido adecuadamente -->
+  <unique-customer-id>ID único del cliente</unique-customer-id> <!-- Identificador único del cliente relacionado con la tarjeta de crédito -->
+
+</credit-card-information>
